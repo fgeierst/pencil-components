@@ -24,3 +24,7 @@ export const Default = {
 export const WithDescription = {
   render: ({ label, description }) => html`<pen-input label=${label} description=${description}></pen-input>`,
 } satisfies StoryObj<PenInput>;
+
+export const Form = {
+  render: ({ label, description }) => html`<form><pen-input label=${label} description=${description}></pen-input><pen-button>Submit</pen-button></form>`,
+} satisfies StoryObj<PenInput>;

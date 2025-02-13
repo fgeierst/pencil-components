@@ -1,0 +1,5 @@
+:root {
+  --focus-color: #007bff;
+  --focus-outline: 2px solid var(--focus-color);
+  --focus-outline-offset: 2px;
+}

@@ -20,6 +20,13 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface PenButton {
+    }
+    interface PenInput {
+        "description": string;
+        "label": string;
+        "value": string;
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +35,22 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLPenButtonElement extends Components.PenButton, HTMLStencilElement {
+    }
+    var HTMLPenButtonElement: {
+        prototype: HTMLPenButtonElement;
+        new (): HTMLPenButtonElement;
+    };
+    interface HTMLPenInputElement extends Components.PenInput, HTMLStencilElement {
+    }
+    var HTMLPenInputElement: {
+        prototype: HTMLPenInputElement;
+        new (): HTMLPenInputElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "pen-button": HTMLPenButtonElement;
+        "pen-input": HTMLPenInputElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +68,17 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface PenButton {
+    }
+    interface PenInput {
+        "description"?: string;
+        "label"?: string;
+        "value"?: string;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "pen-button": PenButton;
+        "pen-input": PenInput;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +86,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "pen-button": LocalJSX.PenButton & JSXBase.HTMLAttributes<HTMLPenButtonElement>;
+            "pen-input": LocalJSX.PenInput & JSXBase.HTMLAttributes<HTMLPenInputElement>;
         }
     }
 }

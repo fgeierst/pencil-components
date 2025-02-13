@@ -16,4 +16,16 @@ describe('pen-input', () => {
       </pen-input>
     `);
   });
+
+  xit('is form associated', async () => {
+    const page = await newSpecPage({
+      components: [PenInput],
+      html: `<form><pen-input label="Name" ></pen-input></form>`,
+    });
+    const form = page.body.querySelector('form');
+    console.log('form elements', form.elements);
+    expect(form.elements).not.toBeNull();
+    // expect(form.elements.length).toBeGreaterThan(0);
+    // expect(form.elements[0].tagName).toBe('PEN-INPUT');
+  });
 });

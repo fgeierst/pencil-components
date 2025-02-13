@@ -15,14 +15,13 @@ export class PenInput {
 
   private handleChange(event) {
     this.internals.setFormValue(event.target.value);
-    this.internals.role = 'textbox';
   }
 
   render() {
     return (
       <Host>
         <label htmlFor="pen-input">{this.label}</label>
-        <input id="pen-input" type="text" aria-describedby="description" value={this.value} onInput={event => this.handleChange(event)} />
+        <input id="pen-input" type="text" value={this.value} onInput={event => this.handleChange(event)} aria-describedby={this.description ? 'description' : undefined} />
         {this.description && <div id="description">{this.description}</div>}
       </Host>
     );

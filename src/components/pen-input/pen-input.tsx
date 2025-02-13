@@ -8,7 +8,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 export class PenInput {
   private inputElement!: HTMLInputElement;
 
-  @Prop() label: string; // required
+  @Prop() label: string;
   @Prop() description: string;
   @Prop() value: string;
 

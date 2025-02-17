@@ -13,6 +13,10 @@ export class PenInput {
   @Prop() description: string;
   @Prop() value: string;
 
+  componentWillLoad() {
+    this.internals.setFormValue('a default value');
+  }
+
   private handleChange(event) {
     this.internals.setFormValue(event.target.value);
   }

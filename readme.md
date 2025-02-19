@@ -20,7 +20,7 @@ pnpm storybook
 
 ## Testing 
 
-[Stencil's unit tests](https://stenciljs.com/docs/unit-testing) are built upon Jest. 
+The [Stencil test runnner](https://stenciljs.com/docs/testing/stencil-testrunner/overview) is built upon Jest and Puppeteer.
 
 ```bash
 pnpm test

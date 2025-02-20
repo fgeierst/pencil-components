@@ -6,8 +6,8 @@ describe('pen-input', () => {
     await page.setContent('<form><pen-input label="My Label"></pen-input></form>');
 
     const element = await page.find('pen-input');
-    expect(element).toHaveClass('hydrated');
 
-    console.log('element', element.shadowRoot.innerHTML);
+    expect(element).toHaveClass('hydrated');
+    //await new Promise(r => setTimeout(r, 15000)); // For headed browser mode, wait before closing the browser
   });
 });

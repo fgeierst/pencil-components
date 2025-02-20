@@ -27,6 +27,7 @@ export const config: Config = {
   ],
   testing: {
     browserHeadless: 'shell',
+    // browserHeadless: false, // headed browser mode
   },
   devServer: {
     reloadStrategy: 'pageReload',

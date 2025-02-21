@@ -9,12 +9,13 @@ describe('pen-button', () => {
     expect(element).toHaveClass('hydrated');
   });
 
-  it('has a accessible name', async () => {
+  it('has accessible name and role', async () => {
     const page = await newE2EPage();
     await page.setContent('<pen-button>Click me</pen-button>');
 
-    const expectedAccessibleName = 'Click me';
-    const element = await page.find(`pen-button >>> button::-p-aria([name="${expectedAccessibleName}"])`);
+    const accessibleName = 'Click me';
+    const role = 'button';
+    const element = await page.find(`pen-button >>> button::-p-aria([name="${accessibleName}"][role="${role}"])`);
     expect(element).not.toBeNull();
   });
 });

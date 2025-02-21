@@ -15,7 +15,7 @@ describe('pen-button', () => {
 
     const accessibleName = 'Click me';
     const role = 'button';
-    const element = await page.find(`pen-button >>> button::-p-aria([name="${accessibleName}"][role="${role}"])`);
+    const element = await page.find(`pen-button >>> ::-p-aria([name="${accessibleName}"][role="${role}"])`);
     expect(element).not.toBeNull();
   });
 });

@@ -17,7 +17,7 @@ describe('pen-input', () => {
 
     const accessibleName = 'My Label';
     const role = 'textbox';
-    const element = await page.find(`pen-input >>> input::-p-aria([name="${accessibleName}"][role="${role}"])`);
+    const element = await page.find(`pen-input >>> ::-p-aria([name="${accessibleName}"][role="${role}"])`);
 
     expect(element).not.toBeNull();
   });

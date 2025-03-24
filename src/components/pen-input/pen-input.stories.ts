@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import type { PenInput } from './pen-input';
 
 const meta = {
-  title: 'Input',
+  title: 'Components/Input',
   args: {
     label: 'Name',
     description: 'Enter your name',

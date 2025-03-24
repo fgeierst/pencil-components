@@ -9,9 +9,9 @@ import { Component, Host, h, Prop, AttachInternals } from '@stencil/core';
 export class PenInput {
   @AttachInternals() internals: ElementInternals;
 
-  @Prop() label: string;
-  @Prop() description: string;
-  @Prop() value: string;
+  @Prop() readonly label: string;
+  @Prop() readonly description: string;
+  @Prop() readonly value: string;
 
   componentWillLoad() {
     this.internals.setFormValue('a default value');

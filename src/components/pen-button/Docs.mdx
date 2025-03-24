@@ -1,13 +1,10 @@
-import { Canvas, Meta, Controls } from '@storybook/blocks';
-
+import { Canvas, Meta, Controls, Title, Primary } from '@storybook/blocks';
 import * as PenButtonStories from './pen-button.stories';
 
 <Meta of={PenButtonStories} />
-
-# Button
+<Title>Button</Title>
 
 A checkbox is a square box that can be activated or deactivated when ticked.
 
-<Canvas of={PenButtonStories.Default} />
-
+<Primary />
 <Controls />

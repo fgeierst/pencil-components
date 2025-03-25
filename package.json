@@ -47,6 +47,7 @@
     "@stencil/core": "^4.28.2",
     "@storybook/addon-actions": "^8.6.9",
     "@storybook/addon-essentials": "^8.6.9",
+    "@storybook/addon-interactions": "^8.6.9",
     "@storybook/blocks": "^8.6.9",
     "@storybook/test": "^8.6.9",
     "@storybook/web-components": "^8.6.9",

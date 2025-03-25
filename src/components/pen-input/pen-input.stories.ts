@@ -1,30 +1,45 @@
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta } from '@storybook/web-components';
+import { expect, userEvent } from '@storybook/test';
 
 import type { PenInput } from './pen-input';
+import { waitForHydration } from '../../utils/storybook-test.utils';
 
 const meta = {
   title: 'Components/Input',
   args: {
     label: 'Name',
-    description: 'Enter your name',
+    description: '',
   },
   argTypes: {
     label: { control: 'text' },
     description: { control: 'text' },
   },
+  play: async ({ canvasElement }) => {
+    const component = canvasElement.querySelector('pen-input');
+    await waitForHydration(component);
+    const input = component.shadowRoot.querySelector('input');
+
+    await userEvent.type(input, 'John Doe');
+
+    expect(input.value).toBe('John Doe');
+  },
+  render: ({ label, description }) => html`<pen-input label=${label} description=${description}></pen-input>`,
 } satisfies Meta<PenInput>;
 
 export default meta;
 
-export const Default = {
-  render: ({ label, description }) => html`<pen-input label=${label} description=${description}></pen-input>`,
-} satisfies StoryObj<PenInput>;
+export const Default = {};
 
 export const WithDescription = {
-  render: ({ label, description }) => html`<pen-input label=${label} description=${description}></pen-input>`,
-} satisfies StoryObj<PenInput>;
+  args: {
+    description: 'Enter your name',
+  },
+};
 
 export const Form = {
-  render: ({ label, description }) => html`<form><pen-input label=${label} description=${description}></pen-input><pen-button>Submit</pen-button></form>`,
-} satisfies StoryObj<PenInput>;
+  args: {
+    label: 'Form Name',
+    description: 'Enter your form name',
+  },
+};

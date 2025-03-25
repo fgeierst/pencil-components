@@ -15,6 +15,7 @@ pnpm start
 ## Storybook
 
 ```bash
+pnpm start 
 pnpm storybook
 ```
 

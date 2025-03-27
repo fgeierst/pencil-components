@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+dialog {
+  position: relative;
+  margin: 0;
+}
+
+[role='listbox'] {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}

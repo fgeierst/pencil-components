@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface PenButton {
     }
+    interface PenCombobox {
+    }
     interface PenInput {
         "description": string;
         "label": string;
@@ -21,6 +23,12 @@ declare global {
         prototype: HTMLPenButtonElement;
         new (): HTMLPenButtonElement;
     };
+    interface HTMLPenComboboxElement extends Components.PenCombobox, HTMLStencilElement {
+    }
+    var HTMLPenComboboxElement: {
+        prototype: HTMLPenComboboxElement;
+        new (): HTMLPenComboboxElement;
+    };
     interface HTMLPenInputElement extends Components.PenInput, HTMLStencilElement {
     }
     var HTMLPenInputElement: {
@@ -29,11 +37,14 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "pen-button": HTMLPenButtonElement;
+        "pen-combobox": HTMLPenComboboxElement;
         "pen-input": HTMLPenInputElement;
     }
 }
 declare namespace LocalJSX {
     interface PenButton {
+    }
+    interface PenCombobox {
     }
     interface PenInput {
         "description"?: string;
@@ -42,6 +53,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "pen-button": PenButton;
+        "pen-combobox": PenCombobox;
         "pen-input": PenInput;
     }
 }
@@ -50,6 +62,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "pen-button": LocalJSX.PenButton & JSXBase.HTMLAttributes<HTMLPenButtonElement>;
+            "pen-combobox": LocalJSX.PenCombobox & JSXBase.HTMLAttributes<HTMLPenComboboxElement>;
             "pen-input": LocalJSX.PenInput & JSXBase.HTMLAttributes<HTMLPenInputElement>;
         }
     }

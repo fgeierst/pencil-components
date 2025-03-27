@@ -12,5 +12,8 @@ const config: StorybookConfig = {
     <script nomodule src="/www/build/pencil-components.js"></script>
     <link rel="stylesheet" href="/www/build/pencil-components.css">
   `,
+  core: {
+    disableTelemetry: true,
+  },
 };
 export default config;

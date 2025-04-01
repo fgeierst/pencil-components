@@ -58,7 +58,7 @@
     "jest-cli": "^29.7.0",
     "lit": "^3.2.1",
     "puppeteer": "^24.4.0",
-    "storybook": "^8.6.9"
+    "storybook": "^8.6.11"
   },
   "license": "MIT",
   "pnpm": {

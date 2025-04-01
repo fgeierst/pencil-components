@@ -1,16 +1,9 @@
 version: 2
 updates:
-<<<<<<< Updated upstream
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'npm'
+    directory: '/' 
     schedule:
-      interval: "weekly"
-=======
-  - package-ecosystem: 'npm' # Adjust this if you're using a different package manager
-    directory: '/' # Location of the package.json file
-    schedule:
-      interval: 'daily' # Check for updates daily
+      interval: 'daily' 
     commit-message:
       prefix: 'deps'
     open-pull-requests-limit: 5
->>>>>>> Stashed changes

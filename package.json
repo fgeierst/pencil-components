@@ -66,5 +66,8 @@
       "esbuild",
       "puppeteer"
     ]
+  },
+  "engines": {
+    "node": ">=23.0.0"
   }
 }

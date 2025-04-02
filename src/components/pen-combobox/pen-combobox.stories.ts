@@ -1,7 +1,6 @@
 import { html } from 'lit';
 import type { Meta } from '@storybook/web-components';
-import { expect, userEvent } from '@storybook/test';
-
+import { expect, userEvent, waitFor } from '@storybook/test';
 import type { PenCombobox } from './pen-combobox';
 import { waitForHydration } from '../../utils/storybook-test.utils';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -35,6 +34,25 @@ export default meta;
 
 export const Default = {};
 
+export const Dismissal = {
+  play: async ({ canvasElement }) => {
+    const component = canvasElement.querySelector('pen-combobox');
+    await waitForHydration(component);
+    const input = component.shadowRoot.querySelector('input[type="combobox"]');
+    const modal = component.shadowRoot.querySelector('dialog');
+
+    await userEvent.type(input, 'apple');
+    waitFor(() => {
+      expect(modal.open).toBe(true);
+    });
+
+    await userEvent.keyboard('{Escape}'); // Escape key
+    await waitFor(() => {
+      expect(modal.open).toBe(false);
+    });
+  },
+};
+
 export const Filtering = {
   play: async ({ canvasElement }) => {
     const component = canvasElement.querySelector('pen-combobox');
@@ -43,13 +61,36 @@ export const Filtering = {
     const modal = component.shadowRoot.querySelector('dialog');
     const options = canvasElement.querySelectorAll('pen-combobox-option');
 
-    await userEvent.type(input, 'apple');
-    expect(modal.open).toBe(true);
-    expect(options[0].style.display).toBe('block');
-    expect(options[1].style.display).toBe('none');
+    expect(modal).not.toBeVisible();
 
-    await userEvent.tab(); // tab out
-    expect(input).not.toHaveFocus();
-    // expect(modal.open).toBeFalsy(); // flaky test
+    await userEvent.type(input, 'apple');
+    expect(modal).toBeVisible();
+    expect(options[0]).toBeVisible();
+    expect(options[1]).not.toBeVisible();
+  },
+};
+
+export const Selecting = {
+  play: async ({ canvasElement }) => {
+    const component = canvasElement.querySelector('pen-combobox');
+    await waitForHydration(component);
+    const input = component.shadowRoot.querySelector('input[type="combobox"]');
+    const modal = component.shadowRoot.querySelector('dialog');
+    const options = canvasElement.querySelectorAll('pen-combobox-option');
+
+    // select first option
+    await userEvent.click(input);
+    await userEvent.keyboard('{ArrowDown}');
+    await waitFor(() => {
+      expect(modal).toBeVisible();
+    });
+    expect(options[0].selected).toBe(true);
+
+    // select second option
+    await userEvent.keyboard('{ArrowDown}');
+    await waitFor(() => {
+      expect(options[0].selected).toBe(false);
+      expect(options[1].selected).toBe(true);
+    });
   },
 };

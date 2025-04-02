@@ -40,7 +40,8 @@
     "test:unit": "stencil test --unit",
     "generate": "stencil generate",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "test-storybook"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.6",
@@ -50,6 +51,7 @@
     "@storybook/addon-interactions": "^8.6.9",
     "@storybook/blocks": "^8.6.9",
     "@storybook/test": "^8.6.9",
+    "@storybook/test-runner": "^0.22.0",
     "@storybook/web-components": "^8.6.9",
     "@storybook/web-components-vite": "^8.6.9",
     "@types/jest": "^29.5.14",
@@ -63,6 +65,7 @@
   "license": "MIT",
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@swc/core",
       "esbuild",
       "puppeteer"
     ]

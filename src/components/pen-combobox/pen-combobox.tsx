@@ -37,7 +37,7 @@ export class PenCombobox {
     return (
       <Host>
         <input ref={el => (this.input = el as HTMLInputElement)} type="combobox" onBlur={this.closeModal} onKeyUp={this.handleKeyUp} onInput={this.handleInput} />
-        <dialog open={!this.open}>
+        <dialog open={this.open}>
           <ul role="listbox">
             <slot></slot>
           </ul>
@@ -48,6 +48,7 @@ export class PenCombobox {
 
   handleInput = (event: Event) => {
     const query = (event.target as HTMLInputElement).value;
+    this.openModal();
 
     this.options.forEach(option => {
       const isMatch = option.textContent.toLowerCase().includes(query.toLowerCase());

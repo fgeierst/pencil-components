@@ -10,6 +10,16 @@ export namespace Components {
     }
     interface PenCombobox {
     }
+    interface PenComboboxOption {
+        /**
+          * The state of the option.
+         */
+        "selected": boolean;
+        /**
+          * The value of the option.
+         */
+        "value": string;
+    }
     interface PenInput {
         "description": string;
         "label": string;
@@ -29,6 +39,12 @@ declare global {
         prototype: HTMLPenComboboxElement;
         new (): HTMLPenComboboxElement;
     };
+    interface HTMLPenComboboxOptionElement extends Components.PenComboboxOption, HTMLStencilElement {
+    }
+    var HTMLPenComboboxOptionElement: {
+        prototype: HTMLPenComboboxOptionElement;
+        new (): HTMLPenComboboxOptionElement;
+    };
     interface HTMLPenInputElement extends Components.PenInput, HTMLStencilElement {
     }
     var HTMLPenInputElement: {
@@ -38,6 +54,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "pen-button": HTMLPenButtonElement;
         "pen-combobox": HTMLPenComboboxElement;
+        "pen-combobox-option": HTMLPenComboboxOptionElement;
         "pen-input": HTMLPenInputElement;
     }
 }
@@ -45,6 +62,16 @@ declare namespace LocalJSX {
     interface PenButton {
     }
     interface PenCombobox {
+    }
+    interface PenComboboxOption {
+        /**
+          * The state of the option.
+         */
+        "selected"?: boolean;
+        /**
+          * The value of the option.
+         */
+        "value"?: string;
     }
     interface PenInput {
         "description"?: string;
@@ -54,6 +81,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "pen-button": PenButton;
         "pen-combobox": PenCombobox;
+        "pen-combobox-option": PenComboboxOption;
         "pen-input": PenInput;
     }
 }
@@ -63,6 +91,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "pen-button": LocalJSX.PenButton & JSXBase.HTMLAttributes<HTMLPenButtonElement>;
             "pen-combobox": LocalJSX.PenCombobox & JSXBase.HTMLAttributes<HTMLPenComboboxElement>;
+            "pen-combobox-option": LocalJSX.PenComboboxOption & JSXBase.HTMLAttributes<HTMLPenComboboxOptionElement>;
             "pen-input": LocalJSX.PenInput & JSXBase.HTMLAttributes<HTMLPenInputElement>;
         }
     }

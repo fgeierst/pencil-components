@@ -14,8 +14,11 @@ const meta = {
   },
   render: ({}) => html`
     <pen-combobox>
-      <pen-combobox-item value="apple">Apple</pen-combobox-item>
-      <pen-combobox-item value="orange">Orange</pen-combobox-item>
+      <pen-combobox-option value="apple">Apple</pen-combobox-option>
+      <pen-combobox-option value="orange">Orange</pen-combobox-option>
+      <pen-combobox-option value="banana">Banana</pen-combobox-option>
+      <pen-combobox-option value="grape">Grape</pen-combobox-option>
+      <pen-combobox-option value="kiwi">Kiwi</pen-combobox-option>
     </pen-combobox>
     <p>lorem ipsum dolor sit amet</p>
   `,
@@ -24,3 +27,16 @@ const meta = {
 export default meta;
 
 export const Default = {};
+
+export const FilterOptions = {
+  play: async ({ canvasElement }) => {
+    const component = canvasElement.querySelector('pen-combobox');
+    await waitForHydration(component);
+    const input = component.shadowRoot.querySelector('input[type="combobox"]');
+    const options = canvasElement.querySelectorAll('pen-combobox-option');
+
+    await userEvent.type(input, 'apple');
+    expect(options[0].style.display).toBe('block');
+    expect(options[1].style.display).toBe('none');
+  },
+};

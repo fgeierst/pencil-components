@@ -34,13 +34,14 @@
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
+    "test": "stencil test --spec --e2e && test-storybook",
     "test:watch": "stencil test --spec --e2e --watchAll",
     "test:e2e": "stencil test --e2e",
     "test:unit": "stencil test --unit",
+    "test:storybook": "test-storybook",
     "generate": "stencil generate",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:build": "storybook build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.6",
@@ -63,11 +64,17 @@
   "license": "MIT",
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@swc/core",
       "esbuild",
+      "playwright-chromium",
       "puppeteer"
     ]
   },
   "engines": {
     "node": ">=23.0.0"
+  },
+  "dependencies": {
+    "@storybook/test-runner": "^0.22.0",
+    "playwright-chromium": "^1.51.1"
   }
 }

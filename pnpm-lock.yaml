@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@storybook/test-runner':
+        specifier: ^0.22.0
+        version: 0.22.0(@types/node@22.14.0)(storybook@8.6.12)
+      playwright-chromium:
+        specifier: ^1.51.1
+        version: 1.51.1
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^3.2.6
@@ -29,9 +36,6 @@ importers:
       '@storybook/test':
         specifier: ^8.6.12
         version: 8.6.12(storybook@8.6.12)
-      '@storybook/test-runner':
-        specifier: ^0.22.0
-        version: 0.22.0(@types/node@22.14.0)(storybook@8.6.12)
       '@storybook/web-components':
         specifier: ^8.6.12
         version: 8.6.12(lit@3.2.1)(storybook@8.6.12)
@@ -2478,6 +2482,11 @@ packages:
   pkg-dir@4.2.0:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
+
+  playwright-chromium@1.51.1:
+    resolution: {integrity: sha512-IQpN8lgv/fx++WRxT8ITZylDwYAamd3Fv5H9g2AWsicp0N829L1oXHziK/6l9h/TMxioSTqc4ifPiZLS8nITxw==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   playwright-core@1.51.1:
     resolution: {integrity: sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw==}
@@ -5722,6 +5731,10 @@ snapshots:
   pkg-dir@4.2.0:
     dependencies:
       find-up: 4.1.0
+
+  playwright-chromium@1.51.1:
+    dependencies:
+      playwright-core: 1.51.1
 
   playwright-core@1.51.1: {}
 

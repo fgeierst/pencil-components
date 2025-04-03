@@ -2,6 +2,10 @@
   display: block;
 }
 
+.hidden {
+  display: none;
+}
+
 [role='option'] {
   border: 1px solid;
   border-radius: 0.3rem;

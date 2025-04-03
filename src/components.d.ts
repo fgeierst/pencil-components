@@ -11,13 +11,8 @@ export namespace Components {
     interface PenCombobox {
     }
     interface PenComboboxOption {
-        /**
-          * The state of the option.
-         */
+        "hidden": boolean;
         "selected": boolean;
-        /**
-          * The value of the option.
-         */
         "value": string;
     }
     interface PenInput {
@@ -64,13 +59,8 @@ declare namespace LocalJSX {
     interface PenCombobox {
     }
     interface PenComboboxOption {
-        /**
-          * The state of the option.
-         */
+        "hidden"?: boolean;
         "selected"?: boolean;
-        /**
-          * The value of the option.
-         */
         "value"?: string;
     }
     interface PenInput {

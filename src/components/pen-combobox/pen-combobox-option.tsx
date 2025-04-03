@@ -6,20 +6,14 @@ import { Component, Host, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class PenComboboxOption {
-  /**
-   * The value of the option.
-   */
   @Prop() value: string;
-
-  /**
-   * The state of the option.
-   */
   @Prop() selected: boolean = false;
+  @Prop() hidden: boolean = false;
 
   render() {
     return (
       <Host>
-        <div role="option" aria-selected={this.selected ? 'true' : undefined}>
+        <div role="option" aria-selected={this.selected ? 'true' : undefined} class={{ hidden: this.hidden }}>
           <slot></slot>
         </div>
       </Host>

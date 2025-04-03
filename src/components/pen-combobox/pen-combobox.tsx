@@ -6,37 +6,19 @@ import { Component, Host, State, Element, h } from '@stencil/core';
   shadow: true,
 })
 export class PenCombobox {
-  /**
-   * The state of the combobox.
-   */
-  @State()
-  open = false;
-
-  /**
-   * Items elments that are passed to the combobox.
-   */
-  @State()
-  options: HTMLPenComboboxOptionElement[] = [];
-
-  /**
-   * The reference to the input element.
-   */
+  @Element() el: HTMLPenComboboxElement;
   input: HTMLInputElement;
+  dialog: HTMLDialogElement;
 
-  /**
-   *  The index of the selected option.
-   */
-  @State()
-  selectedIndex: number = -1;
-
-  /**
-   * The reference to the host element.
-   */
-  @Element()
-  el: HTMLPenComboboxElement;
+  @State() open = false;
+  @State() options: HTMLPenComboboxOptionElement[] = [];
+  @State() selectedIndex: number = -1;
+  @State() visibleOptions: number[];
 
   componentWillLoad() {
-    this.options = Array.from(this.el.getElementsByTagName('pen-combobox-option'));
+    this.options = Array.from(this.el.querySelectorAll('pen-combobox-option'));
+    this.visibleOptions = this.options.map((_, index) => index);
+    this.selectedIndex = this.options.findIndex(option => option.selected);
   }
 
   componentWillRender() {
@@ -46,8 +28,10 @@ export class PenCombobox {
   render() {
     return (
       <Host>
-        <input ref={el => (this.input = el as HTMLInputElement)} type="combobox" onBlur={this.closeModal} onKeyUp={this.handleKeyUp} onInput={this.handleInput} />
-        <dialog open={this.open}>
+        <input ref={el => (this.input = el as HTMLInputElement)} type="combobox" onKeyDown={this.handleKeyDown} onInput={this.handleInput} />
+        <div>visible {JSON.stringify(this.visibleOptions)}</div>
+        <div>selected {JSON.stringify(this.selectedIndex)}</div>
+        <dialog ref={el => (this.dialog = el as HTMLDialogElement)}>
           <ul role="listbox">
             <slot></slot>
           </ul>
@@ -57,47 +41,52 @@ export class PenCombobox {
   }
 
   updateOptions() {
-    this.getVisibleOptions().forEach((option, index) => {
+    this.options.forEach((option, index) => {
+      option.hidden = !this.visibleOptions.includes(index);
       option.selected = index === this.selectedIndex;
     });
   }
 
-  getVisibleOptions(): HTMLPenComboboxOptionElement[] {
-    return this.options.filter(option => !option.hasAttribute('hidden'));
-  }
-
   handleInput = (event: Event) => {
+    this.dialog.open = true;
     const query = (event.target as HTMLInputElement).value;
-    this.openModal();
-    this.selectedIndex = -1;
-
-    this.options.forEach((option, index) => {
-      const isMatch = option.textContent.toLowerCase().includes(query.toLowerCase());
-      option.style.display = isMatch ? 'block' : 'none';
-    });
+    this.visibleOptions = this.options.map((option, index) => (option.textContent?.toLowerCase().includes(query.toLowerCase()) ? index : -1)).filter(index => index !== -1);
+    this.selectedIndex = this.visibleOptions.length > 0 ? this.visibleOptions[0] : -1;
   };
 
-  handleKeyUp = (event: KeyboardEvent) => {
+  handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'Escape':
-        this.closeModal();
+        this.dialog.close();
         this.selectedIndex = -1;
         break;
       case 'ArrowDown':
-        this.openModal();
-        this.selectedIndex = (this.selectedIndex + 1) % this.getVisibleOptions().length;
+        event.preventDefault();
+        event.stopPropagation();
+        if (this.visibleOptions.length > 0) {
+          const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
+          const nextIndex = (currentIndex + 1) % this.visibleOptions.length;
+          this.selectedIndex = this.visibleOptions[nextIndex];
+        }
         break;
       case 'ArrowUp':
-        this.selectedIndex = (this.selectedIndex - 1 + this.getVisibleOptions().length) % this.getVisibleOptions().length;
+        event.preventDefault();
+        event.stopPropagation();
+        if (this.visibleOptions.length > 0) {
+          const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
+          const prevIndex = (currentIndex - 1 + this.visibleOptions.length) % this.visibleOptions.length;
+          this.selectedIndex = this.visibleOptions[prevIndex];
+        }
         break;
+      case 'Enter':
+        event.preventDefault();
+        event.stopPropagation();
+        if (this.selectedIndex !== -1) {
+          const selectedOption = this.options[this.selectedIndex];
+          this.input.value = selectedOption.textContent || '';
+          selectedOption.selected = true;
+          this.dialog.close();
+        }
     }
-  };
-
-  openModal = () => {
-    this.open = true;
-  };
-
-  closeModal = () => {
-    this.open = false;
   };
 }

@@ -61,21 +61,41 @@ export class PenCombobox {
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
-    switch (event.key) {
-      case 'Escape':
-        this.transitionState('idle');
+    switch (this.state) {
+      case 'idle':
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          this.transitionState('open');
+        }
         break;
-      case 'ArrowDown':
-        event.preventDefault();
-        this.moveSelection('down');
+
+      case 'open':
+        switch (event.key) {
+          case 'Escape':
+            this.transitionState('idle');
+            break;
+          case 'ArrowDown':
+            event.preventDefault();
+            this.moveSelection('down');
+            break;
+          case 'ArrowUp':
+            event.preventDefault();
+            this.moveSelection('up');
+            break;
+          case 'Enter':
+            event.preventDefault();
+            this.transitionState('selected');
+            break;
+          case 'Tab':
+            this.transitionState('idle');
+            break;
+        }
         break;
-      case 'ArrowUp':
-        event.preventDefault();
-        this.moveSelection('up');
-        break;
-      case 'Enter':
-        event.preventDefault();
-        this.transitionState('selected');
+
+      case 'selected':
+        if (event.key === 'Tab' || event.key === 'Escape') {
+          this.transitionState('idle');
+        }
         break;
     }
   };

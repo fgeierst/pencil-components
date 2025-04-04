@@ -51,32 +51,54 @@ export class PenCombobox {
     this.dialog.open = true;
     const query = (event.target as HTMLInputElement).value;
     this.visibleOptions = this.options.map((option, index) => (option.textContent?.toLowerCase().includes(query.toLowerCase()) ? index : -1)).filter(index => index !== -1);
-    this.selectedIndex = this.visibleOptions.length > 0 ? this.visibleOptions[0] : -1;
+
+    if (this.visibleOptions.length > 0) {
+      this.moveSelection('initial');
+    } else {
+      this.moveSelection('unset');
+    }
   };
+
+  moveSelection(action: 'up' | 'down' | 'unset' | 'initial') {
+    if (this.visibleOptions.length === 0) {
+      return;
+    }
+
+    switch (action) {
+      case 'unset':
+        this.selectedIndex = -1;
+        break;
+      case 'initial':
+        this.selectedIndex = this.visibleOptions[0];
+        break;
+      case 'down': {
+        const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
+        this.selectedIndex = this.visibleOptions[(currentIndex + 1) % this.visibleOptions.length];
+        break;
+      }
+      case 'up': {
+        const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
+        this.selectedIndex = this.visibleOptions[(currentIndex - 1 + this.visibleOptions.length) % this.visibleOptions.length];
+        break;
+      }
+    }
+  }
 
   handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'Escape':
         this.dialog.close();
-        this.selectedIndex = -1;
+        this.moveSelection('unset');
         break;
       case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();
-        if (this.visibleOptions.length > 0) {
-          const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
-          const nextIndex = (currentIndex + 1) % this.visibleOptions.length;
-          this.selectedIndex = this.visibleOptions[nextIndex];
-        }
+        this.moveSelection('down');
         break;
       case 'ArrowUp':
         event.preventDefault();
         event.stopPropagation();
-        if (this.visibleOptions.length > 0) {
-          const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
-          const prevIndex = (currentIndex - 1 + this.visibleOptions.length) % this.visibleOptions.length;
-          this.selectedIndex = this.visibleOptions[prevIndex];
-        }
+        this.moveSelection('up');
         break;
       case 'Enter':
         event.preventDefault();
@@ -86,6 +108,7 @@ export class PenCombobox {
           this.input.value = selectedOption.textContent || '';
           selectedOption.selected = true;
           this.dialog.close();
+          this.moveSelection('unset');
         }
     }
   };

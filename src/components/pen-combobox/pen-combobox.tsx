@@ -1,5 +1,7 @@
 import { Component, Host, State, Element, h } from '@stencil/core';
 
+type ComboboxState = 'idle' | 'open' | 'selected';
+
 @Component({
   tag: 'pen-combobox',
   styleUrl: 'pen-combobox.css',
@@ -10,15 +12,14 @@ export class PenCombobox {
   input: HTMLInputElement;
   dialog: HTMLDialogElement;
 
-  @State() open = false;
+  @State() state: ComboboxState = 'idle';
   @State() options: HTMLPenComboboxOptionElement[] = [];
   @State() selectedIndex: number = -1;
-  @State() visibleOptions: number[];
+  @State() visibleOptions: number[] = [];
 
   componentWillLoad() {
     this.options = Array.from(this.el.querySelectorAll('pen-combobox-option'));
     this.visibleOptions = this.options.map((_, index) => index);
-    this.selectedIndex = this.options.findIndex(option => option.selected);
   }
 
   componentWillRender() {
@@ -28,9 +29,10 @@ export class PenCombobox {
   render() {
     return (
       <Host>
-        <input ref={el => (this.input = el as HTMLInputElement)} type="combobox" onKeyDown={this.handleKeyDown} onInput={this.handleInput} />
-        <div>visible {JSON.stringify(this.visibleOptions)}</div>
-        <div>selected {JSON.stringify(this.selectedIndex)}</div>
+        <input ref={el => (this.input = el as HTMLInputElement)} type="combobox" onFocus={this.handleFocus} onInput={this.handleInput} onKeyDown={this.handleKeyDown} />
+        <div>State: {this.state}</div>
+        <div>Visible: {JSON.stringify(this.visibleOptions)}</div>
+        <div>Selected: {JSON.stringify(this.selectedIndex)}</div>
         <dialog ref={el => (this.dialog = el as HTMLDialogElement)}>
           <ul role="listbox">
             <slot></slot>
@@ -47,69 +49,68 @@ export class PenCombobox {
     });
   }
 
+  handleFocus = () => {
+    this.transitionState('open');
+  };
+
   handleInput = (event: Event) => {
-    this.dialog.open = true;
     const query = (event.target as HTMLInputElement).value;
     this.visibleOptions = this.options.map((option, index) => (option.textContent?.toLowerCase().includes(query.toLowerCase()) ? index : -1)).filter(index => index !== -1);
 
-    if (this.visibleOptions.length > 0) {
-      this.moveSelection('initial');
-    } else {
-      this.moveSelection('unset');
-    }
+    this.transitionState('open');
   };
-
-  moveSelection(action: 'up' | 'down' | 'unset' | 'initial') {
-    if (this.visibleOptions.length === 0) {
-      return;
-    }
-
-    switch (action) {
-      case 'unset':
-        this.selectedIndex = -1;
-        break;
-      case 'initial':
-        this.selectedIndex = this.visibleOptions[0];
-        break;
-      case 'down': {
-        const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
-        this.selectedIndex = this.visibleOptions[(currentIndex + 1) % this.visibleOptions.length];
-        break;
-      }
-      case 'up': {
-        const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
-        this.selectedIndex = this.visibleOptions[(currentIndex - 1 + this.visibleOptions.length) % this.visibleOptions.length];
-        break;
-      }
-    }
-  }
 
   handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'Escape':
-        this.dialog.close();
-        this.moveSelection('unset');
+        this.transitionState('idle');
         break;
       case 'ArrowDown':
         event.preventDefault();
-        event.stopPropagation();
         this.moveSelection('down');
         break;
       case 'ArrowUp':
         event.preventDefault();
-        event.stopPropagation();
         this.moveSelection('up');
         break;
       case 'Enter':
         event.preventDefault();
-        event.stopPropagation();
+        this.transitionState('selected');
+        break;
+    }
+  };
+
+  moveSelection(action: 'up' | 'down') {
+    if (this.visibleOptions.length === 0) {
+      return;
+    }
+
+    const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
+    if (action === 'down') {
+      this.selectedIndex = this.visibleOptions[(currentIndex + 1) % this.visibleOptions.length];
+    } else if (action === 'up') {
+      this.selectedIndex = this.visibleOptions[(currentIndex - 1 + this.visibleOptions.length) % this.visibleOptions.length];
+    }
+  }
+
+  transitionState(newState: ComboboxState) {
+    switch (newState) {
+      case 'idle':
+        this.dialog.close();
+        this.selectedIndex = -1;
+        break;
+      case 'open':
+        this.dialog.open = true;
+        break;
+      case 'selected':
         if (this.selectedIndex !== -1) {
           const selectedOption = this.options[this.selectedIndex];
           this.input.value = selectedOption.textContent || '';
           selectedOption.selected = true;
-          this.dialog.close();
-          this.moveSelection('unset');
         }
+        this.dialog.close();
+        break;
     }
-  };
+    this.state = newState;
+  }
 }

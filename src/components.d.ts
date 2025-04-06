@@ -9,6 +9,7 @@ export namespace Components {
     interface PenButton {
     }
     interface PenCombobox {
+        "label": string;
     }
     interface PenComboboxOption {
         "hidden": boolean;
@@ -57,6 +58,7 @@ declare namespace LocalJSX {
     interface PenButton {
     }
     interface PenCombobox {
+        "label": string;
     }
     interface PenComboboxOption {
         "hidden"?: boolean;

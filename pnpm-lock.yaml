@@ -19,8 +19,8 @@ importers:
         specifier: ^3.2.6
         version: 3.2.6(react@19.1.0)(storybook@8.6.12)
       '@stencil/core':
-        specifier: ^4.28.2
-        version: 4.28.2
+        specifier: ^4.29.1
+        version: 4.29.1
       '@storybook/addon-actions':
         specifier: ^8.6.12
         version: 8.6.12(storybook@8.6.12)
@@ -58,8 +58,8 @@ importers:
         specifier: ^3.2.1
         version: 3.2.1
       puppeteer:
-        specifier: ^24.5.0
-        version: 24.5.0
+        specifier: ^24.6.0
+        version: 24.6.0(typescript@5.8.3)
       storybook:
         specifier: ^8.6.12
         version: 8.6.12
@@ -821,8 +821,8 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@stencil/core@4.28.2':
-    resolution: {integrity: sha512-sHwBNionxzHfmjQ93ffaQOBNvd5HrSn8e5KSsiBBaODgC/g9squZoARYHHJ0VFfUpOXkEoZQ+ASixpUBafG9bA==}
+  '@stencil/core@4.29.1':
+    resolution: {integrity: sha512-5Ik6wyB3CWeUbVdhpVaAw3utlOZGW/1VXZXLMRol+lwJVdpSUjeioxYVkoDHQLdtKSDe61lv3/pPHY7PM1o4wA==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -1574,8 +1574,8 @@ packages:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
 
-  devtools-protocol@0.0.1413902:
-    resolution: {integrity: sha512-yRtvFD8Oyk7C9Os3GmnFZLu53yAfsnyw1s+mLmHHUK0GQEc9zthHWvS1r67Zqzm5t7v56PILHIVZ7kmFMaL2yQ==}
+  devtools-protocol@0.0.1425554:
+    resolution: {integrity: sha512-uRfxR6Nlzdzt0ihVIkV+sLztKgs7rgquY/Mhcv1YNCWDh5IZgl5mnn2aeEnW5stYTE0wwiF4RYVz8eMEpV1SEw==}
 
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
@@ -2544,12 +2544,12 @@ packages:
   pump@3.0.2:
     resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
 
-  puppeteer-core@24.5.0:
-    resolution: {integrity: sha512-vqibSk7xGOoqOlPUk3H+Iz02b4jCEd5QxaiuXclqyyBrJ6ZK22mXkg9HBSpyZePq6vKWh5ZAqUilSnbF2bv4Jg==}
+  puppeteer-core@24.6.0:
+    resolution: {integrity: sha512-Cukxysy12m0v350bhl/Gzof0XQYmtON9l2VvGp3D4BOQZVgyf+y5wIpcjDZQ/896Okoi95dKRGRV8E6a7SYAQQ==}
     engines: {node: '>=18'}
 
-  puppeteer@24.5.0:
-    resolution: {integrity: sha512-3m0B48gj1A8cK01ma49WwjE8mg4i9UmnR2lP64rwBiLacJ2V20FpT67MgSUyzfz9BcHMQQweuF6Q854mnIYTqg==}
+  puppeteer@24.6.0:
+    resolution: {integrity: sha512-wYTB8WkzAr7acrlsp+0at1PZjOJPOxe6dDWKOG/kaX4Zjck9RXCFx3CtsxsAGzPn/Yv6AzgJC/CW1P5l+qxsqw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2862,6 +2862,11 @@ packages:
 
   typedarray-to-buffer@3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
+
+  typescript@5.8.3:
+    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
 
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
@@ -3729,7 +3734,7 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@stencil/core@4.28.2':
+  '@stencil/core@4.29.1':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.34.9
       '@rollup/rollup-darwin-x64': 4.34.9
@@ -4424,9 +4429,9 @@ snapshots:
 
   chromatic@11.25.2: {}
 
-  chromium-bidi@3.0.0(devtools-protocol@0.0.1413902):
+  chromium-bidi@3.0.0(devtools-protocol@0.0.1425554):
     dependencies:
-      devtools-protocol: 0.0.1413902
+      devtools-protocol: 0.0.1425554
       mitt: 3.0.1
       zod: 3.24.2
 
@@ -4480,12 +4485,14 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  cosmiconfig@9.0.0:
+  cosmiconfig@9.0.0(typescript@5.8.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.0
       parse-json: 5.2.0
+    optionalDependencies:
+      typescript: 5.8.3
 
   create-jest@29.7.0(@types/node@22.14.0):
     dependencies:
@@ -4555,7 +4562,7 @@ snapshots:
 
   detect-newline@3.1.0: {}
 
-  devtools-protocol@0.0.1413902: {}
+  devtools-protocol@0.0.1425554: {}
 
   diff-sequences@29.6.3: {}
 
@@ -5801,12 +5808,12 @@ snapshots:
       end-of-stream: 1.4.4
       once: 1.4.0
 
-  puppeteer-core@24.5.0:
+  puppeteer-core@24.6.0:
     dependencies:
       '@puppeteer/browsers': 2.9.0
-      chromium-bidi: 3.0.0(devtools-protocol@0.0.1413902)
+      chromium-bidi: 3.0.0(devtools-protocol@0.0.1425554)
       debug: 4.4.0
-      devtools-protocol: 0.0.1413902
+      devtools-protocol: 0.0.1425554
       typed-query-selector: 2.12.0
       ws: 8.18.1
     transitivePeerDependencies:
@@ -5815,13 +5822,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer@24.5.0:
+  puppeteer@24.6.0(typescript@5.8.3):
     dependencies:
       '@puppeteer/browsers': 2.9.0
-      chromium-bidi: 3.0.0(devtools-protocol@0.0.1413902)
-      cosmiconfig: 9.0.0
-      devtools-protocol: 0.0.1413902
-      puppeteer-core: 24.5.0
+      chromium-bidi: 3.0.0(devtools-protocol@0.0.1425554)
+      cosmiconfig: 9.0.0(typescript@5.8.3)
+      devtools-protocol: 0.0.1425554
+      puppeteer-core: 24.6.0
       typed-query-selector: 2.12.0
     transitivePeerDependencies:
       - bare-buffer
@@ -6147,6 +6154,9 @@ snapshots:
   typedarray-to-buffer@3.1.5:
     dependencies:
       is-typedarray: 1.0.0
+
+  typescript@5.8.3:
+    optional: true
 
   undici-types@6.21.0: {}
 

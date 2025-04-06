@@ -1,4 +1,4 @@
-import { Component, Host, State, Element, h } from '@stencil/core';
+import { Component, Host, State, Element, h, Prop } from '@stencil/core';
 
 type ComboboxState = 'idle' | 'open' | 'selected';
 
@@ -10,8 +10,9 @@ type ComboboxState = 'idle' | 'open' | 'selected';
 export class PenCombobox {
   @Element() el: HTMLPenComboboxElement;
   input: HTMLInputElement;
-  dialog: HTMLDialogElement;
+  popover: HTMLDivElement;
 
+  @Prop() label!: string;
   @State() state: ComboboxState = 'idle';
   @State() options: HTMLPenComboboxOptionElement[] = [];
   @State() selectedIndex: number = -1;
@@ -29,36 +30,41 @@ export class PenCombobox {
   render() {
     return (
       <Host>
-        <input ref={el => (this.input = el as HTMLInputElement)} type="combobox" onFocus={this.handleFocus} onInput={this.handleInput} onKeyDown={this.handleKeyDown} />
+        <label htmlFor="input">{this.label}</label>
+        <input id="input" ref={el => (this.input = el as HTMLInputElement)} type="combobox" onInput={this.handleInput} onKeyDown={this.handleKeyDown} onBlur={this.handleBlur} />
         <div>State: {this.state}</div>
         <div>Visible: {JSON.stringify(this.visibleOptions)}</div>
         <div>Selected: {JSON.stringify(this.selectedIndex)}</div>
-        <dialog ref={el => (this.dialog = el as HTMLDialogElement)}>
+        <div ref={el => (this.popover = el as HTMLDivElement)} class="popover" hidden>
           <ul role="listbox">
             <slot></slot>
           </ul>
-        </dialog>
+        </div>
       </Host>
     );
   }
 
-  updateOptions() {
-    this.options.forEach((option, index) => {
-      option.hidden = !this.visibleOptions.includes(index);
-      option.selected = index === this.selectedIndex;
-    });
+  transitionState(newState: ComboboxState) {
+    switch (newState) {
+      case 'idle':
+        this.moveSelection('reset');
+        this.closePopover();
+        break;
+      case 'open':
+        this.openPopover();
+        break;
+      case 'selected':
+        if (this.selectedIndex !== -1) {
+          const selectedOption = this.options[this.selectedIndex];
+          this.input.value = selectedOption.textContent || '';
+          selectedOption.selected = true;
+        }
+        this.closePopover();
+        this.moveSelection('reset');
+        break;
+    }
+    this.state = newState;
   }
-
-  handleFocus = () => {
-    this.transitionState('open');
-  };
-
-  handleInput = (event: Event) => {
-    const query = (event.target as HTMLInputElement).value;
-    this.visibleOptions = this.options.map((option, index) => (option.textContent?.toLowerCase().includes(query.toLowerCase()) ? index : -1)).filter(index => index !== -1);
-
-    this.transitionState('open');
-  };
 
   handleKeyDown = (event: KeyboardEvent) => {
     switch (this.state) {
@@ -86,9 +92,6 @@ export class PenCombobox {
             event.preventDefault();
             this.transitionState('selected');
             break;
-          case 'Tab':
-            this.transitionState('idle');
-            break;
         }
         break;
 
@@ -100,37 +103,63 @@ export class PenCombobox {
     }
   };
 
-  moveSelection(action: 'up' | 'down') {
+  handleBlur = () => {
+    this.transitionState('idle');
+  };
+
+  handleInput = (event: Event) => {
+    const query = (event.target as HTMLInputElement).value;
+    this.visibleOptions = this.options.map((option, index) => (option.textContent?.toLowerCase().includes(query.toLowerCase()) ? index : -1)).filter(index => index !== -1);
+
+    this.transitionState('open');
+  };
+
+  moveSelection(action: 'reset' | 'initial' | 'up' | 'down') {
     if (this.visibleOptions.length === 0) {
       return;
     }
 
     const currentIndex = this.visibleOptions.indexOf(this.selectedIndex);
-    if (action === 'down') {
-      this.selectedIndex = this.visibleOptions[(currentIndex + 1) % this.visibleOptions.length];
-    } else if (action === 'up') {
-      this.selectedIndex = this.visibleOptions[(currentIndex - 1 + this.visibleOptions.length) % this.visibleOptions.length];
+    switch (action) {
+      case 'down':
+        this.selectedIndex = this.visibleOptions[(currentIndex + 1) % this.visibleOptions.length];
+        break;
+      case 'up':
+        this.selectedIndex = this.visibleOptions[(currentIndex - 1 + this.visibleOptions.length) % this.visibleOptions.length];
+        break;
+      case 'reset':
+        this.selectedIndex = -1;
+        break;
     }
   }
 
-  transitionState(newState: ComboboxState) {
-    switch (newState) {
-      case 'idle':
-        this.dialog.close();
-        this.selectedIndex = -1;
-        break;
-      case 'open':
-        this.dialog.open = true;
-        break;
-      case 'selected':
-        if (this.selectedIndex !== -1) {
-          const selectedOption = this.options[this.selectedIndex];
-          this.input.value = selectedOption.textContent || '';
-          selectedOption.selected = true;
-        }
-        this.dialog.close();
-        break;
-    }
-    this.state = newState;
+  updateOptions() {
+    this.options.forEach((option, index) => {
+      option.hidden = !this.visibleOptions.includes(index);
+      option.selected = index === this.selectedIndex;
+    });
   }
+
+  openPopover() {
+    viewTransition(() => {
+      this.popover.hidden = false;
+    });
+  }
+
+  closePopover() {
+    viewTransition(() => {
+      this.popover.hidden = true;
+    });
+  }
+}
+
+function viewTransition(action) {
+  // @ts-ignore-next-line
+  if (!document.startViewTransition) {
+    action();
+    return;
+  }
+  console.log('View transition started');
+  // @ts-ignore-next-line
+  document.startViewTransition(() => action());
 }

@@ -12,11 +12,18 @@ interface PenComboboxStory extends PenCombobox {
 const meta = {
   title: 'Components/Combobox',
   args: {
+    label: 'Favorite fruit',
     optionsSlot: `<pen-combobox-option value="apple">Apple</pen-combobox-option>
       <pen-combobox-option value="orange">Orange</pen-combobox-option>
       <pen-combobox-option value="banana">Banana</pen-combobox-option>
       <pen-combobox-option value="grape">Grape</pen-combobox-option>
-      <pen-combobox-option value="kiwi">Kiwi</pen-combobox-option>`,
+      <pen-combobox-option value="kiwi">Kiwi</pen-combobox-option>
+      <pen-combobox-option value="mango">Mango</pen-combobox-option>
+      <pen-combobox-option value="peach">Peach</pen-combobox-option>
+      <pen-combobox-option value="pear">Pear</pen-combobox-option>
+      <pen-combobox-option value="pineapple">Pineapple</pen-combobox-option>
+      <pen-combobox-option value="strawberry">Strawberry</pen-combobox-option>
+      <pen-combobox-option value="watermelon">Watermelon</pen-combobox-option>`,
   },
   play: async ({ canvasElement }) => {
     const component = canvasElement.querySelector('pen-combobox');
@@ -24,8 +31,8 @@ const meta = {
     const modal = component.shadowRoot.querySelector('dialog');
     expect(modal.open).toBe(false);
   },
-  render: ({ optionsSlot }) => html`
-    <pen-combobox> ${unsafeHTML(optionsSlot)} </pen-combobox>
+  render: ({ label, optionsSlot }) => html`
+    <pen-combobox label="${label}"> ${unsafeHTML(optionsSlot)} </pen-combobox>
     <p>lorem ipsum dolor sit amet</p>
   `,
 } satisfies Meta<PenComboboxStory>;

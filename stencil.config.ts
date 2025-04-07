@@ -28,6 +28,7 @@ export const config: Config = {
   testing: {
     browserHeadless: 'shell',
     // browserHeadless: false, // headed browser mode
+    testMatch: ['**/*.spec.ts', '**/*.test.ts'],
   },
   devServer: {
     reloadStrategy: 'pageReload',

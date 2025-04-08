@@ -1,3 +1,6 @@
+/// <reference types="@vitest/browser/matchers" />
+/// <reference types="@vitest/browser/providers/playwright" />
+
 import { expect, test } from 'vitest';
 import { render } from 'vitest-browser-lit';
 import { html } from 'lit';
@@ -16,11 +19,13 @@ test('renders input', async () => {
   defineCustomElements(window);
   const screen = render(html`<pen-input data-testid="pen-input" label="Input Label"></pen-input>`);
   const element = screen.getByTestId('pen-input');
+  await expect.element(element).toHaveClass('hydrated');
 
-  await expect(element).toBeInTheDocument();
-  await new Promise(resolve => setTimeout(resolve, 100)); // await element.toHaveClass('hydrated');
   const input = screen.getByRole('textbox', {
     name: 'Input Label',
   });
   await expect(input).toBeInTheDocument();
+
+  await input.fill('My value');
+  await expect(input).toHaveValue('My value');
 });

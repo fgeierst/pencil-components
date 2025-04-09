@@ -31,7 +31,7 @@ export class PenCombobox {
     return (
       <Host>
         <label htmlFor="input">{this.label}</label>
-        <input id="input" ref={el => (this.input = el as HTMLInputElement)} type="combobox" onInput={this.handleInput} onKeyDown={this.handleKeyDown} onBlur={this.handleBlur} />
+        <input type="text" id="input" ref={el => (this.input = el as HTMLInputElement)} onInput={this.handleInput} onKeyDown={this.handleKeyDown} onBlur={this.handleBlur} />
         <div>State: {this.state}</div>
         <div>Visible: {JSON.stringify(this.visibleOptions)}</div>
         <div>Selected: {JSON.stringify(this.selectedIndex)}</div>

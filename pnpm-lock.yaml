@@ -29,9 +29,6 @@ importers:
       '@storybook/test':
         specifier: ^8.6.12
         version: 8.6.12(storybook@8.6.12)
-      '@storybook/test-runner':
-        specifier: ^0.22.0
-        version: 0.22.0(@types/node@22.14.0)(storybook@8.6.12)
       '@storybook/web-components':
         specifier: ^8.6.12
         version: 8.6.12(lit@3.2.1)(storybook@8.6.12)
@@ -48,9 +45,6 @@ importers:
         specifier: ^3.2.1
         version: 3.2.1
       playwright:
-        specifier: ^1.51.1
-        version: 1.51.1
-      playwright-chromium:
         specifier: ^1.51.1
         version: 1.51.1
       storybook:

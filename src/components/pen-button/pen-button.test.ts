@@ -4,7 +4,7 @@
 import { expect, test } from 'vitest';
 import { render } from 'vitest-browser-lit';
 import { html } from 'lit';
-import { defineCustomElements } from '../loader/index.js';
+import { defineCustomElements } from '../../../loader/index.js';
 
 test('renders button', async () => {
   defineCustomElements(window);

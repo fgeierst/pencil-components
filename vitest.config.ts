@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     dir: 'src',
     include: ['**/*.test.ts'],
+    setupFiles: ['vitest.setup.ts'],
     browser: {
       enabled: true,
       provider: 'playwright',

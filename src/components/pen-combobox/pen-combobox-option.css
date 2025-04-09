@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+[role='option'] {
+  border: 1px solid;
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.5rem;
+
+  &[aria-selected='true'] {
+    background-color: black;
+    color: white;
+  }
+}

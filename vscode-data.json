@@ -10,6 +10,40 @@
       "attributes": []
     },
     {
+      "name": "pen-combobox",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "label",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "pen-combobox-option",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "hidden",
+          "description": ""
+        },
+        {
+          "name": "selected",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "pen-input",
       "description": {
         "kind": "markdown",

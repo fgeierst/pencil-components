@@ -34,7 +34,8 @@
     "test:storybook": "test-storybook",
     "generate": "stencil generate",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "storybook:preview": "stencil build && storybook build && npx http-server ./storybook-static"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.0",

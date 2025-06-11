@@ -19,6 +19,8 @@ pnpm build:watch
 pnpm storybook
 ```
 
+Preview Storybook's production build with `pnpm storybook:preview`
+
 ## Testing 
 
 The tests are based on [Vitest Browser Mode](https://vitest.dev/guide/browser/).

@@ -1,6 +1,6 @@
 import { html } from 'lit';
-import type { Meta } from '@storybook/web-components';
-import { expect, userEvent, waitFor } from '@storybook/test';
+import type { Meta } from '@storybook/web-components-vite';
+import { expect, userEvent, waitFor } from 'storybook/test';
 import type { PenCombobox } from './pen-combobox';
 import { waitForHydration } from '../../utils/storybook-test.utils';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';

@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { fn, userEvent, waitFor, expect } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { fn, userEvent, waitFor, expect } from 'storybook/test';
 import { PenButton } from './pen-button';
 import { waitForHydration } from '../../utils/storybook-test.utils';
 

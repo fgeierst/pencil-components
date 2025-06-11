@@ -1,6 +1,6 @@
 import { html } from 'lit';
-import type { Meta } from '@storybook/web-components';
-import { expect, userEvent } from '@storybook/test';
+import type { Meta } from '@storybook/web-components-vite';
+import { expect, userEvent } from 'storybook/test';
 
 import type { PenInput } from './pen-input';
 import { waitForHydration } from '../../utils/storybook-test.utils';

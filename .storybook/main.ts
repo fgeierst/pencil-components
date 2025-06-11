@@ -3,17 +3,13 @@ import type { StorybookConfig } from '@storybook/web-components-vite';
 
 const config: StorybookConfig = {
   stories: ['../src/components/**/*.mdx', '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: ['@storybook/addon-docs', '@storybook/addon-webpack5-compiler-swc'],
+  addons: ['@storybook/addon-docs'],
   framework: {
     name: '@storybook/web-components-vite',
     options: {},
   },
   core: {
     disableTelemetry: true,
-    builder: {
-      name: '@storybook/builder-webpack5',
-      options: {},
-    },
   },
 };
 export default config;

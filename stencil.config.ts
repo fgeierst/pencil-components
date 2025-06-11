@@ -25,9 +25,11 @@ export const config: Config = {
       file: 'vscode-data.json',
     },
   ],
-
   devServer: {
     reloadStrategy: 'pageReload',
     openBrowser: false,
+  },
+  extras: {
+    enableImportInjection: true,
   },
 };

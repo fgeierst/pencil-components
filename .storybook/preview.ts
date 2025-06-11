@@ -1,4 +1,7 @@
 import type { Preview } from '@storybook/web-components';
+import { defineCustomElements } from '../loader';
+
+defineCustomElements(window);
 
 const preview: Preview = {
   parameters: {

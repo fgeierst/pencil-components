@@ -7,11 +7,11 @@ const config: StorybookConfig = {
     name: '@storybook/web-components-vite',
     options: {},
   },
-  previewHead: head => `${head}
-    <script type="module" src="/www/build/pencil-components.esm.js"></script>
-    <script nomodule src="/www/build/pencil-components.js"></script>
-    <link rel="stylesheet" href="/www/build/pencil-components.css">
-  `,
+  // previewHead: head => `${head}
+  //   <script type="module" src="/www/build/pencil-components.esm.js"></script>
+  //   <script nomodule src="/www/build/pencil-components.js"></script>
+  //   <link rel="stylesheet" href="/www/build/pencil-components.css">
+  // `,
   core: {
     disableTelemetry: true,
   },

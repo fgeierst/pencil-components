@@ -12,7 +12,13 @@ export namespace Components {
         "label": string;
     }
     interface PenComboboxOption {
+        /**
+          * @default false
+         */
         "hidden": boolean;
+        /**
+          * @default false
+         */
         "selected": boolean;
         "value": string;
     }
@@ -61,7 +67,13 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PenComboboxOption {
+        /**
+          * @default false
+         */
         "hidden"?: boolean;
+        /**
+          * @default false
+         */
         "selected"?: boolean;
         "value"?: string;
     }

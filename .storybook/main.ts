@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
-// import dynamicImport from 'vite-plugin-dynamic-import';
 
 const config: StorybookConfig = {
   stories: ['../src/components/**/*.mdx', '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -10,6 +9,18 @@ const config: StorybookConfig = {
   },
   core: {
     disableTelemetry: true,
+  },
+  viteFinal: async config => {
+    return {
+      ...config,
+      server: {
+        ...config.server,
+        watch: {
+          ...config.server?.watch,
+          ignored: ['!**/dist/**'], // By default Vite ignores the dist folder, which breaks Storybooks HMR.
+        },
+      },
+    };
   },
 };
 export default config;

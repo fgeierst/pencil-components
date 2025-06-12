@@ -58,7 +58,10 @@
       "@swc/core",
       "esbuild",
       "playwright-chromium"
-    ]
+    ],
+    "overrides": {
+      "vite": "npm:rolldown-vite@latest"
+    }
   },
   "engines": {
     "node": ">=23.0.0"

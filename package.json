@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.0",
-    "@stencil/core": "^4.34.0",
+    "@stencil/core": "^4.35.0",
     "@storybook/addon-docs": "^9.0.9",
     "@storybook/test-runner": "^0.23.0",
     "@storybook/web-components-vite": "^9.0.9",

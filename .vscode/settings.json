@@ -4,5 +4,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "html.customData": ["./vscode-data.json"]
+  "html.customData": ["./vscode-data.json"],
+  "typescript.experimental.useTsgo": true
 }

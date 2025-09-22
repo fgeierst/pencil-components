@@ -5,5 +5,6 @@
     "source.fixAll.eslint": "explicit"
   },
   "html.customData": ["./vscode-data.json"],
-  "typescript.experimental.useTsgo": true
+  "typescript.experimental.useTsgo": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

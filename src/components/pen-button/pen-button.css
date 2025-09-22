@@ -13,5 +13,9 @@
       outline: var(--focus-outline);
       outline-offset: var(--focus-outline-offset);
     }
+
+    &:active {
+      transform: translate(0.1em, 0.1em);
+    }
   }
 }

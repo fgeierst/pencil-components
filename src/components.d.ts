@@ -27,6 +27,11 @@ export namespace Components {
         "label": string;
         "value": string;
     }
+    interface PenToast {
+        "label": string;
+    }
+    interface PenToastContainer {
+    }
 }
 declare global {
     interface HTMLPenButtonElement extends Components.PenButton, HTMLStencilElement {
@@ -53,11 +58,25 @@ declare global {
         prototype: HTMLPenInputElement;
         new (): HTMLPenInputElement;
     };
+    interface HTMLPenToastElement extends Components.PenToast, HTMLStencilElement {
+    }
+    var HTMLPenToastElement: {
+        prototype: HTMLPenToastElement;
+        new (): HTMLPenToastElement;
+    };
+    interface HTMLPenToastContainerElement extends Components.PenToastContainer, HTMLStencilElement {
+    }
+    var HTMLPenToastContainerElement: {
+        prototype: HTMLPenToastContainerElement;
+        new (): HTMLPenToastContainerElement;
+    };
     interface HTMLElementTagNameMap {
         "pen-button": HTMLPenButtonElement;
         "pen-combobox": HTMLPenComboboxElement;
         "pen-combobox-option": HTMLPenComboboxOptionElement;
         "pen-input": HTMLPenInputElement;
+        "pen-toast": HTMLPenToastElement;
+        "pen-toast-container": HTMLPenToastContainerElement;
     }
 }
 declare namespace LocalJSX {
@@ -82,11 +101,18 @@ declare namespace LocalJSX {
         "label"?: string;
         "value"?: string;
     }
+    interface PenToast {
+        "label"?: string;
+    }
+    interface PenToastContainer {
+    }
     interface IntrinsicElements {
         "pen-button": PenButton;
         "pen-combobox": PenCombobox;
         "pen-combobox-option": PenComboboxOption;
         "pen-input": PenInput;
+        "pen-toast": PenToast;
+        "pen-toast-container": PenToastContainer;
     }
 }
 export { LocalJSX as JSX };
@@ -97,6 +123,8 @@ declare module "@stencil/core" {
             "pen-combobox": LocalJSX.PenCombobox & JSXBase.HTMLAttributes<HTMLPenComboboxElement>;
             "pen-combobox-option": LocalJSX.PenComboboxOption & JSXBase.HTMLAttributes<HTMLPenComboboxOptionElement>;
             "pen-input": LocalJSX.PenInput & JSXBase.HTMLAttributes<HTMLPenInputElement>;
+            "pen-toast": LocalJSX.PenToast & JSXBase.HTMLAttributes<HTMLPenToastElement>;
+            "pen-toast-container": LocalJSX.PenToastContainer & JSXBase.HTMLAttributes<HTMLPenToastContainerElement>;
         }
     }
 }

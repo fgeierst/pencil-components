@@ -63,6 +63,27 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "pen-toast",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "label",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "pen-toast-container",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
     }
   ]
 }

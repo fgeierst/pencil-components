@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+[aria-live] {
+  position: fixed;
+  inset: auto 1rem 1rem;
+  z-index: 1000;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+}

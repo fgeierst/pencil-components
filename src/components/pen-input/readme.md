@@ -5,13 +5,17 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Input
+
 ## Properties
 
-| Property      | Attribute     | Description | Type     | Default     |
-| ------------- | ------------- | ----------- | -------- | ----------- |
-| `description` | `description` |             | `string` | `undefined` |
-| `label`       | `label`       |             | `string` | `undefined` |
-| `value`       | `value`       |             | `string` | `undefined` |
+| Property      | Attribute     | Description               | Type     | Default     |
+| ------------- | ------------- | ------------------------- | -------- | ----------- |
+| `description` | `description` | Description for the input | `string` | `undefined` |
+| `label`       | `label`       | Label for the input       | `string` | `undefined` |
+| `value`       | `value`       | Value of the input        | `string` | `undefined` |
 
 
 ----------------------------------------------

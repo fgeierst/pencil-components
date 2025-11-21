@@ -1,5 +1,8 @@
-import { Component, Host, h, Prop, AttachInternals } from '@stencil/core';
+import { AttachInternals, Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * Input
+ */
 @Component({
   tag: 'pen-input',
   styleUrl: 'pen-input.css',
@@ -7,10 +10,24 @@ import { Component, Host, h, Prop, AttachInternals } from '@stencil/core';
   formAssociated: true,
 })
 export class PenInput {
+  /**
+   * Element internals for form association
+   */
   @AttachInternals() internals: ElementInternals;
 
+  /**
+   * Label for the input
+   */
   @Prop() readonly label: string;
+
+  /**
+   * Description for the input
+   */
   @Prop() readonly description: string;
+
+  /**
+   * Value of the input
+   */
   @Prop() readonly value: string;
 
   componentWillLoad() {

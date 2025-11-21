@@ -22,9 +22,21 @@ export namespace Components {
         "selected": boolean;
         "value": string;
     }
+    /**
+     * Input
+     */
     interface PenInput {
+        /**
+          * Description for the input
+         */
         "description": string;
+        /**
+          * Label for the input
+         */
         "label": string;
+        /**
+          * Value of the input
+         */
         "value": string;
     }
 }
@@ -47,6 +59,9 @@ declare global {
         prototype: HTMLPenComboboxOptionElement;
         new (): HTMLPenComboboxOptionElement;
     };
+    /**
+     * Input
+     */
     interface HTMLPenInputElement extends Components.PenInput, HTMLStencilElement {
     }
     var HTMLPenInputElement: {
@@ -77,9 +92,21 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         "value"?: string;
     }
+    /**
+     * Input
+     */
     interface PenInput {
+        /**
+          * Description for the input
+         */
         "description"?: string;
+        /**
+          * Label for the input
+         */
         "label"?: string;
+        /**
+          * Value of the input
+         */
         "value"?: string;
     }
     interface IntrinsicElements {
@@ -96,6 +123,9 @@ declare module "@stencil/core" {
             "pen-button": LocalJSX.PenButton & JSXBase.HTMLAttributes<HTMLPenButtonElement>;
             "pen-combobox": LocalJSX.PenCombobox & JSXBase.HTMLAttributes<HTMLPenComboboxElement>;
             "pen-combobox-option": LocalJSX.PenComboboxOption & JSXBase.HTMLAttributes<HTMLPenComboboxOptionElement>;
+            /**
+             * Input
+             */
             "pen-input": LocalJSX.PenInput & JSXBase.HTMLAttributes<HTMLPenInputElement>;
         }
     }

@@ -1,45 +1,36 @@
-import { html } from 'lit';
 import type { Meta } from '@storybook/web-components-vite';
-import { expect, userEvent } from 'storybook/test';
-
+import { getStorybookHelpers } from '@wc-toolkit/storybook-helpers';
 import type { PenInput } from './pen-input';
-import { waitForHydration } from '../../utils/storybook-test.utils';
+
+const { events, args, argTypes, template } = getStorybookHelpers<PenInput>('pen-input');
 
 const meta = {
   title: 'Components/Input',
-  args: {
-    label: 'Name',
-    description: '',
+  component: 'my-element',
+  args,
+  argTypes,
+  render: args => template(args),
+  parameters: {
+    actions: {
+      handles: events,
+    },
   },
-  argTypes: {
-    label: { control: 'text' },
-    description: { control: 'text' },
-  },
-  play: async ({ canvasElement }) => {
-    const component = canvasElement.querySelector('pen-input');
-    await waitForHydration(component);
-    const input = component.shadowRoot.querySelector('input');
-
-    await userEvent.type(input, 'John Doe');
-
-    expect(input.value).toBe('John Doe');
-  },
-  render: ({ label, description }) => html`<pen-input label=${label} description=${description}></pen-input>`,
 } satisfies Meta<PenInput>;
+
+console.log('argTypes', argTypes);
 
 export default meta;
 
-export const Default = {};
-
-export const WithDescription = {
+export const Default = {
   args: {
-    description: 'Enter your name',
+    label: 'Name',
+    value: 'Florian',
   },
 };
 
-export const Form = {
+export const Description = {
   args: {
-    label: 'Form Name',
-    description: 'Enter your form name',
+    ...Default.args,
+    description: 'Enter your name',
   },
 };

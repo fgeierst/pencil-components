@@ -47,20 +47,20 @@
       "name": "pen-input",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "Input"
       },
       "attributes": [
         {
           "name": "description",
-          "description": ""
+          "description": "Description for the input"
         },
         {
           "name": "label",
-          "description": ""
+          "description": "Label for the input"
         },
         {
           "name": "value",
-          "description": ""
+          "description": "Value of the input"
         }
       ]
     }

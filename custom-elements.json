@@ -1,0 +1,394 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/components/pen-button/pen-button.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PenButton",
+          "members": [
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "tagName": "pen-button",
+          "events": [],
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PenButton",
+          "declaration": {
+            "name": "PenButton",
+            "module": "src/components/pen-button/pen-button.tsx"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pen-button",
+          "declaration": {
+            "name": "PenButton",
+            "module": "src/components/pen-button/pen-button.tsx"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/pen-input/pen-input.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Input",
+          "name": "PenInput",
+          "members": [
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "description": "Element internals for form association"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "description": "Label for the input"
+            },
+            {
+              "kind": "field",
+              "name": "description",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "description": "Description for the input"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "description": "Value of the input"
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Label for the input",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "description",
+              "fieldName": "description",
+              "description": "Description for the input",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "value",
+              "fieldName": "value",
+              "description": "Value of the input",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "tagName": "pen-input",
+          "events": [],
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PenInput",
+          "declaration": {
+            "name": "PenInput",
+            "module": "src/components/pen-input/pen-input.tsx"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pen-input",
+          "declaration": {
+            "name": "PenInput",
+            "module": "src/components/pen-input/pen-input.tsx"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/pen-combobox/pen-combobox-option.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PenComboboxOption",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "hidden",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "value",
+              "fieldName": "value",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "selected",
+              "fieldName": "selected",
+              "default": "false",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "name": "hidden",
+              "fieldName": "hidden",
+              "default": "false",
+              "type": {
+                "text": "boolean"
+              }
+            }
+          ],
+          "tagName": "pen-combobox-option",
+          "events": [],
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PenComboboxOption",
+          "declaration": {
+            "name": "PenComboboxOption",
+            "module": "src/components/pen-combobox/pen-combobox-option.tsx"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pen-combobox-option",
+          "declaration": {
+            "name": "PenComboboxOption",
+            "module": "src/components/pen-combobox/pen-combobox-option.tsx"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/pen-combobox/pen-combobox.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "PenCombobox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "el",
+              "type": {
+                "text": "HTMLPenComboboxElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "input",
+              "type": {
+                "text": "HTMLInputElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "popover",
+              "type": {
+                "text": "HTMLDivElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "type": {
+                "text": "ComboboxState"
+              },
+              "default": "'idle'"
+            },
+            {
+              "kind": "field",
+              "name": "options",
+              "type": {
+                "text": "HTMLPenComboboxOptionElement[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "selectedIndex",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1"
+            },
+            {
+              "kind": "field",
+              "name": "visibleOptions",
+              "type": {
+                "text": "number[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "method",
+              "name": "transitionState",
+              "parameters": [
+                {
+                  "name": "newState",
+                  "type": {
+                    "text": "ComboboxState"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "handleKeyDown"
+            },
+            {
+              "kind": "field",
+              "name": "handleBlur"
+            },
+            {
+              "kind": "field",
+              "name": "handleInput"
+            },
+            {
+              "kind": "method",
+              "name": "moveSelection",
+              "parameters": [
+                {
+                  "name": "action",
+                  "type": {
+                    "text": "'reset' | 'initial' | 'up' | 'down'"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "updateOptions"
+            },
+            {
+              "kind": "method",
+              "name": "openPopover"
+            },
+            {
+              "kind": "method",
+              "name": "closePopover"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "tagName": "pen-combobox",
+          "events": [],
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "PenCombobox",
+          "declaration": {
+            "name": "PenCombobox",
+            "module": "src/components/pen-combobox/pen-combobox.tsx"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "pen-combobox",
+          "declaration": {
+            "name": "PenCombobox",
+            "module": "src/components/pen-combobox/pen-combobox.tsx"
+          }
+        }
+      ]
+    }
+  ]
+}

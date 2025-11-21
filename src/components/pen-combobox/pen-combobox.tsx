@@ -1,4 +1,4 @@
-import { Component, Host, State, Element, h, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 type ComboboxState = 'idle' | 'open' | 'selected';
 
@@ -162,12 +162,10 @@ export class PenCombobox {
 }
 
 function viewTransition(action) {
-  // @ts-ignore-next-line
   if (!document.startViewTransition) {
     action();
     return;
   }
   console.log('View transition started');
-  // @ts-ignore-next-line
   document.startViewTransition(() => action());
 }

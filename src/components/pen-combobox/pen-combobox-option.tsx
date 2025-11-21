@@ -12,8 +12,8 @@ export class PenComboboxOption {
 
   render() {
     return (
-      <Host>
-        <div role="option" aria-selected={this.selected ? 'true' : undefined} class={{ hidden: this.hidden }}>
+      <Host class={{ hidden: this.hidden }}>
+        <div role="option" aria-selected={this.selected ? 'true' : undefined}>
           <slot></slot>
         </div>
       </Host>
